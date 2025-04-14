@@ -7,6 +7,7 @@ from src.database import Base
 
 @unique
 class Role(str, PyEnum):
+    admin = 'admin'
     user = 'user'
     librarian = "librarian"
 
@@ -28,7 +29,7 @@ class User(Base):
 class Book(Base):
     __tablename__ = "books"
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(250), nullable=False)
+    title = Column(String(250), nullable=False, unique=True)
     author = Column(String(255), nullable=True)
     category_id = Column(Integer, ForeignKey("categories.id"))
     no_of_copies = Column(Integer, default=1)
