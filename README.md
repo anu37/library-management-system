@@ -67,4 +67,6 @@ alembic upgrade head
 docker build -t library-system .
 docker run -d -p 8000:8000 library-system
 ```
+## DB Schema
+![alt text](Library_db_schema.svg)
 
