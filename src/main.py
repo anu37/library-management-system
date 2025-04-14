@@ -1,8 +1,7 @@
 from fastapi import FastAPI, Depends
 from fastapi.security import OAuth2PasswordBearer
 from typing import Annotated
-from src import auth_api
-from src import books_api
+from src import auth_api, books_api
 from slowapi.errors import RateLimitExceeded
 from slowapi import Limiter, _rate_limit_exceeded_handler
 
@@ -15,6 +14,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.include_router(auth_api.router)
 app.include_router(books_api.router)
+# app.include_router(admin.router)
 
 @app.get("/")
 async def root(token: Annotated[str, Depends(oauth2_scheme)]):
